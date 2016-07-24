@@ -6,10 +6,10 @@
 # 17 Feb 2016
 IPADDR_URL=http://ifconfig.co	# remote script that response ip address of request
 SERVER=133.130.88.95			# DNS service address
-DOMAIN=rpi.nsscn.org			# Domain name
+DOMAIN=http://ifconfig.co		# Domain name
 NAME_TTL=86400					# Time to live,604800 is 1 week,86400 is 1 day
 KEYNAME=rndc-key				# key name for authentication
-SECRET=uTAevu9eTIBTApE1jj3yvw==	# Secret key for authentication
+SECRET=XXXXX					# Secret key for authentication
 PRE_ADDRESS=
 
 while :
@@ -23,7 +23,7 @@ do
 		continue
 	fi
 	# Send an UPDATE script of a record to remote DNS service
-	nsupdate -y $KEYNAME:$SECRET>&2 <<EOT
+	nsupdate -y $KEYNAME:$SECRET>&2 2>/dev/null<<EOT
 server $SERVER
 update delete $DOMAIN A
 update add $DOMAIN $NAME_TTL IN A $ADDRESS
