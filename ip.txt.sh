@@ -6,7 +6,7 @@
 # 17 Feb 2016
 IPADDR_URL=http://ifconfig.co	# remote script that response ip address of request
 SERVER=133.130.88.95			# DNS service address
-DOMAIN=http://ifconfig.co		# Domain name
+DOMAIN=http://name.example.com		# Domain name
 NAME_TTL=86400					# Time to live,604800 is 1 week,86400 is 1 day
 KEYNAME=rndc-key				# key name for authentication
 SECRET=XXXXX					# Secret key for authentication
