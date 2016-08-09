@@ -23,14 +23,19 @@ do
 		continue
 	fi
 	# Send an UPDATE script of a record to remote DNS service
-	nsupdate -y $KEYNAME:$SECRET>&2 2>/dev/null<<EOT
+	if nsupdate -y $KEYNAME:$SECRET>&2 2>/dev/null<<EOT
 server $SERVER
 update delete $DOMAIN A
 update add $DOMAIN $NAME_TTL IN A $ADDRESS
 send
 quit
 EOT
-	PRE_ADDRESS=$ADDRESS
-	sleep 240 # 4 minute
+	then
+		PRE_ADDRESS=$ADDRESS
+		sleep 240 # 4 minute
+	else
+		# Update failed
+		sleep 60
+	fi
 done
 
